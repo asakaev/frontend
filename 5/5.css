@@ -1,24 +1,24 @@
 body {
-    background-image: url(../misc/yad.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 750px;
+	background-image: url(../misc/yad.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 750px;
 }
 
 ul {
-    width: 900px;
+	width: 900px;
 }
 li {
-    border: 5px solid #297EB3;
-    width: 150px;
-    display:inline-block;  
-    vertical-align: top;
-    margin: 15px;
-    padding: 10px;
-    background: #EEE;
+	border: 5px solid #297EB3;
+	width: 150px;
+	display:inline-block;
+	vertical-align: top;
+	margin: 15px;
+	padding: 10px;
+	background: #EEE;
 }
 p {
-    margin: 0px;
-    font-size: 12px;
-    font-family: sans-serif;
+	margin: 0px;
+	font-size: 12px;
+	font-family: sans-serif;
 }
