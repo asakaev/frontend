@@ -1,0 +1,29 @@
+.centered {               
+    position: absolute;
+    width: 600px;    
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);    
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.clear {
+    border: 18px solid rgba(41, 126, 179, .5);
+    background-clip: padding-box;
+    background-color:rgba(255, 255, 255, .8);
+}
+
+.centered p {
+    margin: 18px;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+body {
+    background-image: url(../misc/yad_origin.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
