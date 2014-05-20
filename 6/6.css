@@ -1,49 +1,49 @@
 body {
-    background-image: url(../misc/yad.jpg);
-    background-repeat: no-repeat;
-    background-position: center; 
+	background-image: url(../misc/yad.jpg);
+	background-repeat: no-repeat;
+	background-position: center; 
 }
 
 .unstyled {
-    padding: 0px;
-    list-style-type: none;
+	padding: 0px;
+	list-style-type: none;
 }
 
 .wrap {
-    margin: 20px;
-    padding: 15px;
-    padding-right: 200px;
+	margin: 20px;
+	padding: 15px;
+	padding-right: 200px;
 }
 
 .wrap img {
-    float: left;
-    margin-right: 30px;
+	float: left;
+	margin-right: 30px;
 }
 
 .wrap p {
-    margin: 0;
-    padding: 20px;
-    overflow: hidden;
-    border: 5px solid #297EB3;
-    background: #EEE;
+	margin: 0;
+	padding: 20px;
+	overflow: hidden;
+	border: 5px solid #297EB3;
+	background: #EEE;
 }
 
 .wrap p:before {
-    content: '';
-    position: absolute;
-    margin-top: -10px;
-    margin-left: -56px;
-    border-style: solid;
-    border-width: 18px 18px 18px 18px;
-    border-color: transparent #EEE transparent transparent;
+	content: '';
+	position: absolute;
+	margin-top: -10px;
+	margin-left: -56px;
+	border-style: solid;
+	border-width: 18px 18px 18px 18px;
+	border-color: transparent #EEE transparent transparent;
 }
 
 .wrap .big-arrow:before {
-    content: '';
-    position: absolute;
-    margin-left: -40px;
-    margin-top: 13px;
-    border-style: solid;
-    border-width: 20px 20px 20px 20px;
-    border-color: transparent #297EB3 transparent transparent;
+	content: '';
+	position: absolute;
+	margin-left: -40px;
+	margin-top: 13px;
+	border-style: solid;
+	border-width: 20px 20px 20px 20px;
+	border-color: transparent #297EB3 transparent transparent;
 }
