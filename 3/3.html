@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Compare two forms parameters</title>
+</head>
+
+<script src="../misc/jquery.js"></script>
+<script src="../1/queryStringToObject.js"></script>
+
+<body>
+<H1 class='info'>Fill first form:</H1>
+<p>
+<form class="form1">
+<table border=1>
+    <thead><tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+    </tr></thead>
+    <tr>
+        <td><input  type="text" name="ID" maxlength="5" size="3"></td>
+        <td><input  type="text" name="Name" maxlength="10" size="10"></td>
+        <td><input  type="text" name="Surname" maxlength="10" size="10"></td>
+    </tr>
+</table>
+<input type="button" value="Save form1 data to JS object" onclick="run(1);" />
+<p>
+<p>
+</form>
+
+<form class="form2">
+<table border=1>
+    <thead><tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Nickname</th>
+    </tr></thead>
+    <tr>
+        <td><input  type="text" name="ID" maxlength="5" size="3"></td>
+        <td><input  type="text" name="Name" maxlength="10" size="10"></td>
+        <td><input  type="text" name="Nickname" maxlength="10" size="10"></td>
+    </tr>
+</table>
+<input type="button" class="b1" value="Save form2 data to JS object" onclick="run(2);" />
+<p>
+<p>
+</form>
+
+<script src="3.js"></script>
+
+</body>
+</html>
