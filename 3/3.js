@@ -67,62 +67,70 @@ function paramsCheck() {
 function duplicatesCheck() {
     var text, index;
 
-    var f1same = countSameKeys(f1);
+    var f1same = countSameKeys(f1); // {Extra: 2, Extra2: 2}
     var f2same = countSameKeys(f2);
-    var f1sameCount = Object.keys(f1same).length;
-    var f2sameCount = Object.keys(f2same).length;
-    var f1sameNames = [];
-    var f2sameNames = [];
-    var f1sameNamesText = '';
-    var f2sameNamesText = '';
 
+    var f1sameCount = Object.keys(f1same).length; // 2
+    var f2sameCount = Object.keys(f2same).length;
+    var f1sameKeys = []; // ["Extra", "Extra2"]
+    var f2sameKeys = [];
+
+    // getting keys from object
     if (f1sameCount > 0) {
         for (index in f1same) {
             if (f1same.hasOwnProperty(index)) {
-                f1sameNames.push(index);
-                f1sameNamesText += index + ', ';
+                f1sameKeys.push(index);
             }
         }
-        f1sameNamesText = f1sameNamesText.substring(0, f1sameNamesText.length - 2);
     }
 
     if (f2sameCount > 0) {
         for (index in f2same) {
             if (f2same.hasOwnProperty(index)) {
-                f2sameNames.push(index);
-                f2sameNamesText += index + ', ';
+                f2sameKeys.push(index);
             }
         }
-        f2sameNamesText = f2sameNamesText.substring(0, f2sameNamesText.length - 2);
     }
 
+    // output string formatting
     if (f1sameCount > f2sameCount) {
-        text = 'Form1 has more (' + f1sameCount + ') keys duplicates (' + f1sameNamesText +
+        text = 'Form1 has more (' + f1sameCount + ') keys duplicates (' + f1sameKeys.join(", ") +
             ') then Form2 (' + f2sameCount;
         if (f2sameCount > 0) {
-            text += '), keys: (' + f2sameNamesText + ').'
+            text += '), keys: (' + f2sameKeys.join(", ") + ').'
         } else {
             text += ').'
         }
         console.log(text);
         $('body').append('<p>' + text + '</p>');
     } else if (f1sameCount < f2sameCount) {
-        text = 'Form2 has more (' + f2sameCount + ') keys duplicates (' + f2sameNamesText +
+        text = 'Form2 has more (' + f2sameCount + ') keys duplicates (' + f2sameKeys.join(", ") +
             ') then Form1 (' + f1sameCount + ').';
         if (f1sameCount > 0) {
-            text += '), keys: (' + f2sameNamesText + ').'
+            text += '), keys: (' + f2sameKeys.join(", ") + ').'
         } else {
             text += ').'
         }
         console.log(text);
         $('body').append('<p>' + text + '</p>');
     }
+
+    // need this later to compare values
+    var res = [];
+    res[0] = f1sameKeys;
+    res[1] = f2sameKeys;
+    return res;
+}
+
+function dupesValuesCheck(keys) {
+    console.log(keys);
 }
 
 // We have two arrays of object and compare them
 function whatsNew() {
     paramsCheck();
-    duplicatesCheck();
+    var dupeKeys = duplicatesCheck();
+    dupesValuesCheck(dupeKeys);
 }
 
 function run(formnum) {
