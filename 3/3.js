@@ -122,15 +122,87 @@ function duplicatesCheck() {
     return res;
 }
 
-function dupesValuesCheck(keys) {
-    console.log(keys);
+function arrayUnique(array) {
+    var a = array.concat();
+    for (var i = 0; i < a.length; ++i) {
+        for (var j = i + 1; j < a.length; ++j) {
+            if (a[i] === a[j])
+                a.splice(j--, 1);
+        }
+    }
+    return a;
+}
+
+function isUnique(val, arr) {
+    var i;
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i] == val) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function getValueByKey(key, arr) {
+    var i, k;
+    for (i = 0; i < arr.length; i++) {
+        k = Object.keys(arr[i]);
+        if (k == key) {
+            return arr[i][k];
+        }
+    }
+    return false;
+}
+
+function compareUniqueWithout(dupes) {
+    var i, j;
+    var k1 = dupes[0];
+    var k2 = dupes[1];
+
+    var con = k1.concat(k2);
+    var dupeKeys = arrayUnique(con);
+
+    var res = {};
+
+    // compare form1 and form2 params Values
+    for (i = 0; i < f1.length; i++) {
+        var key1 = Object.keys(f1[i]).toString();
+        for (j = 0; j < f2.length; j++) {
+            var key2 = Object.keys(f2[j]).toString();
+
+            // if keys are unique and matched
+            if (isUnique(key1, dupeKeys) && isUnique(key2, dupeKeys) && (key1 == key2)) {
+//                console.log(key1 + ':' + key2);
+                var val1 = getValueByKey(key1, f1);
+                var val2 = getValueByKey(key2, f2);
+                if (val1 != val2) {
+//                    console.log('not match');
+                    var a = [];
+                    a.push(val1);
+                    a.push(val2);
+                    res[key1] = a;
+                }
+            }
+
+        }
+    }
+    return res; // {ID: Array[2], Name: Array[2]}
+}
+
+function showChangedValues(obj) {
+    for (var k in obj) {
+        var text = 'Parameter "' + k + '" was changed from "' + obj[k][0] + '" to "' + obj[k][1] + '".';
+        console.log(text);
+        $('body').append('<p>' + text + '</p>');
+    }
 }
 
 // We have two arrays of object and compare them
 function whatsNew() {
     paramsCheck();
     var dupeKeys = duplicatesCheck();
-    dupesValuesCheck(dupeKeys);
+    var changes = compareUniqueWithout(dupeKeys);
+    showChangedValues(changes);
 }
 
 function run(formnum) {
