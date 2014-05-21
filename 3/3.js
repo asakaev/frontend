@@ -161,7 +161,6 @@ function compareUniqueWithout(dupes) {
 
     var con = k1.concat(k2);
     var dupeKeys = arrayUnique(con);
-
     var res = {};
 
     // compare form1 and form2 params Values
@@ -197,12 +196,77 @@ function showChangedValues(obj) {
     }
 }
 
+// try to find key from arg1 that not in arg2
+function whatIsRemoved(arg1, arg2) {
+    var i, j;
+    var a = [];
+    var isUnique;
+
+    for (i = 0; i < arg1.length; i++) {
+        isUnique = true;
+        var key1 = Object.keys(arg1[i]).toString();
+        for (j = 0; j < arg2.length; j++) {
+            var key2 = Object.keys(arg2[j]).toString();
+
+            // if f2 have key as f1 then not use it
+            if (key1 == key2) {
+//                console.log(key1 + ':' + key2);
+                isUnique = false;
+                break;
+            }
+        }
+        if (isUnique) {
+            a.push(key1);
+        }
+    }
+    return a;
+}
+
+function showRemoved(arr) {
+    var text = 'This parameters was in Form1 but not present in Form2: ';
+    for (var i = 0; i < arr.length; i++) {
+        text += arr[i];
+        if (i == arr.length - 1) {
+            text += '.';
+        } else {
+            text += ', ';
+        }
+    }
+    console.log(text);
+    $('body').append('<p>' + text + '</p>');
+}
+
+function showAdded(arr) {
+    var param;
+    if (arr.length == 1) {
+        param = 'parameter';
+    } else {
+        param = 'parameters';
+    }
+
+    var text = 'This ' + param + ' was not in Form1 but appear in Form2: ';
+    for (var i = 0; i < arr.length; i++) {
+        text += arr[i];
+        if (i == arr.length - 1) {
+            text += '.';
+        } else {
+            text += ', ';
+        }
+    }
+    console.log(text);
+    $('body').append('<p>' + text + '</p>');
+}
+
 // We have two arrays of object and compare them
 function whatsNew() {
     paramsCheck();
     var dupeKeys = duplicatesCheck();
     var changes = compareUniqueWithout(dupeKeys);
     showChangedValues(changes);
+    var removed = whatIsRemoved(f1, f2);
+    showRemoved(removed);
+    var added = whatIsRemoved(f2, f1);
+    showAdded(added);
 }
 
 function run(formnum) {
