@@ -4,8 +4,7 @@ $('.form2').hide(); // init
 
 function doAjaxPost(formnum) {
     var fn = '.form' + formnum;
-    var queryString = $(fn).serialize();
-    return queryString;
+    return $(fn).serialize();
 }
 
 function queryStringToArray(queryString) {
@@ -24,22 +23,106 @@ function queryStringToArray(queryString) {
     return params;
 }
 
-// We have two arrays of object and compare them
-function whatsNew() {
-//    console.log(f1);
-//    console.log(f2);
+function countSameKeys(arr) {
+    var j;
+    var histogram = {};
+    var res = {};
 
-    // check numbers of params
-    if (f1.length < f2.length) {
-        var text = 'Form1 has less (' + f1.length + ') params then Form2 (' + f2.length + ').';
-        console.log(text);
-        $('body').append(text);
-    } else if (f1.length > f2.length) {
-        var text = 'Form1 has more (' + f1.length + ') params then Form2 (' + f2.length + ').';
-        console.log(text);
-        $('body').append(text);
+    // like histogram
+    for (j = 0; j < arr.length; j++) {
+        var key = Object.keys(arr[j])[0]; // get key from object that live in array
+
+        if (!histogram[key]) {
+            histogram[key] = 1
+        } else {
+            histogram[key] = histogram[key] + 1;
+        }
     }
 
+    // transfer all key-val that has more than one occurrence
+    for (var index in histogram) {
+        if (histogram.hasOwnProperty(index) && histogram[index] > 1) {
+            res[index] = histogram[index];
+        }
+    }
+    return res;
+}
+
+// check how many params in form1 and form2
+function paramsCheck() {
+    var text;
+
+    if (f1.length < f2.length) {
+        text = 'Form1 has less (' + f1.length + ') params then Form2 (' + f2.length + ').';
+        console.log(text);
+        $('body').append('<p>' + text + '</p>');
+    } else if (f1.length > f2.length) {
+        text = 'Form1 has more (' + f1.length + ') params then Form2 (' + f2.length + ').';
+        console.log(text);
+        $('body').append('<p>' + text + '</p>');
+    }
+}
+
+// check how many duplicates in each form and its names
+function duplicatesCheck() {
+    var text, index;
+
+    var f1same = countSameKeys(f1);
+    var f2same = countSameKeys(f2);
+    var f1sameCount = Object.keys(f1same).length;
+    var f2sameCount = Object.keys(f2same).length;
+    var f1sameNames = [];
+    var f2sameNames = [];
+    var f1sameNamesText = '';
+    var f2sameNamesText = '';
+
+    if (f1sameCount > 0) {
+        for (index in f1same) {
+            if (f1same.hasOwnProperty(index)) {
+                f1sameNames.push(index);
+                f1sameNamesText += index + ', ';
+            }
+        }
+        f1sameNamesText = f1sameNamesText.substring(0, f1sameNamesText.length - 2);
+    }
+
+    if (f2sameCount > 0) {
+        for (index in f2same) {
+            if (f2same.hasOwnProperty(index)) {
+                f2sameNames.push(index);
+                f2sameNamesText += index + ', ';
+            }
+        }
+        f2sameNamesText = f2sameNamesText.substring(0, f2sameNamesText.length - 2);
+    }
+
+    if (f1sameCount > f2sameCount) {
+        text = 'Form1 has more (' + f1sameCount + ') keys duplicates (' + f1sameNamesText +
+            ') then Form2 (' + f2sameCount;
+        if (f2sameCount > 0) {
+            text += '), keys: (' + f2sameNamesText + ').'
+        } else {
+            text += ').'
+        }
+        console.log(text);
+        $('body').append('<p>' + text + '</p>');
+    } else if (f1sameCount < f2sameCount) {
+        text = 'Form2 has more (' + f2sameCount + ') keys duplicates (' + f2sameNamesText +
+            ') then Form1 (' + f1sameCount + ').';
+        if (f1sameCount > 0) {
+            text += '), keys: (' + f2sameNamesText + ').'
+        } else {
+            text += ').'
+        }
+        console.log(text);
+        $('body').append('<p>' + text + '</p>');
+    }
+}
+
+// We have two arrays of object and compare them
+function whatsNew() {
+    paramsCheck();
+    duplicatesCheck();
 }
 
 function run(formnum) {
@@ -59,7 +142,7 @@ function run(formnum) {
     }
 
     if (count > 1) {
-        $('.info').text('Here what we got:');
+        $('.info').text('What has changed in the parameters?');
         whatsNew();
     }
     // console.log(res);
