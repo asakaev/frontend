@@ -11,3 +11,5 @@ var parseQueryString = function (queryString) {
     }
     return params;
 };
+
+console.log(parseQueryString('id=5&name=Nick')); // { id: '5', name: 'Nick' }
