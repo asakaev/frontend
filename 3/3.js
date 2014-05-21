@@ -1,4 +1,4 @@
-var f1, f2;
+var f1, f2; // data from form1 and form2
 var count = 0; // to count form1 and form2
 $('.form2').hide(); // init
 
@@ -171,11 +171,9 @@ function compareUniqueWithout(dupes) {
 
             // if keys are unique and matched
             if (isUnique(key1, dupeKeys) && isUnique(key2, dupeKeys) && (key1 == key2)) {
-//                console.log(key1 + ':' + key2);
                 var val1 = getValueByKey(key1, f1);
                 var val2 = getValueByKey(key2, f2);
                 if (val1 != val2) {
-//                    console.log('not match');
                     var a = [];
                     a.push(val1);
                     a.push(val2);
@@ -210,7 +208,6 @@ function whatIsRemoved(arg1, arg2) {
 
             // if f2 have key as f1 then not use it
             if (key1 == key2) {
-//                console.log(key1 + ':' + key2);
                 isUnique = false;
                 break;
             }
@@ -289,5 +286,4 @@ function run(formnum) {
         $('.info').text('What has changed in the parameters?');
         whatsNew();
     }
-    // console.log(res);
 }
