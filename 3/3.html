@@ -5,7 +5,6 @@
 </head>
 
 <script src="../misc/jquery.js"></script>
-<script src="../1/queryStringToObject.js"></script>
 
 <body>
 <H1 class='info'>Fill first form:</H1>
@@ -16,11 +15,13 @@
         <th>ID</th>
         <th>Name</th>
         <th>Surname</th>
+        <th>Additional</th>
     </tr></thead>
     <tr>
         <td><input  type="text" name="ID" maxlength="5" size="3"></td>
         <td><input  type="text" name="Name" maxlength="10" size="10"></td>
         <td><input  type="text" name="Surname" maxlength="10" size="10"></td>
+        <td><input  type="text" name="Additional" maxlength="10" size="10"></td>
     </tr>
 </table>
 <input type="button" value="Save form1 data to JS object" onclick="run(1);" />
